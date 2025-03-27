@@ -77,4 +77,35 @@ public class Vetor {
 
         System.out.println("Item não encontrado");
     }
+
+    public int buscarBinario(Integer valor) {
+        int esquerda = 0;
+        int direita = this.tamanho - 1;
+        
+        while (esquerda <= direita) {
+            int meio = (esquerda + direita) / 2;
+            
+            if (this.elementos[meio] == valor) {
+                return meio;  // Valor encontrado
+            } else if (this.elementos[meio] < valor) {
+                esquerda = meio + 1;  //  direita
+            } else {
+                direita = meio - 1;  // esquerda
+            }
+        }
+        return -1;  // Valor não encontrado
+    }
+
+    public void inserirNoInicio(Integer valor) {
+    
+        // Desloca p/ direita
+        for (int i = this.tamanho; i > 0; i--) {
+            this.elementos[i] = this.elementos[i - 1];
+        }
+    
+        // Insere o valor no início
+        this.elementos[0] = valor;
+        this.tamanho++;
+    }
+    
 }

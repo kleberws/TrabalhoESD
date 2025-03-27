@@ -79,4 +79,28 @@ public class Iterador {
         }
     }
 
+    public void inserirAntesAtual(int novoValor) {
+        No novoNo = new No(novoValor);
+        if (this.atual.anterior != null) {
+            novoNo.anterior = this.atual.anterior;
+            this.atual.anterior.proximo = novoNo;
+        }
+        this.atual.anterior = novoNo;
+        novoNo.proximo = this.atual;
+        this.lista.tamanho++; // Atualiza o tamanho
+    }
+    
+    public void removerAntesAtual() {
+        if (this.atual.anterior != null) {
+            No noRemover = this.atual.anterior;
+            this.atual.anterior = noRemover.anterior;
+            if (noRemover.anterior != null) {
+                noRemover.anterior.proximo = this.atual;
+            }
+            noRemover = null;  // Removendo a referência
+            this.lista.tamanho--; // Atualiza o tamanho
+        }
+    }
+    
+
 }
